@@ -11,18 +11,19 @@ class HomePage extends Component {
 
   componentDidMount() {
     axios
-      .get(`http://api.icndb.com/jokes/random/%3Cnumber%3E`)
+      .get(`http://api.icndb.com/jokes/random`)
       .then((response) => {
-        this.setState({
-          currentJoke: response.data,
-        });
+        this.setState({currentJoke: response.data})
         console.log(response.data);
-        return response.data;
       })
+      //   console.log(response.data);
+      //   return response.data;
+      // })
+      
       .catch((error) => {
         console.log(error);
       });
-  }
+    }
 
   //   componentDidUpdate() {}
 

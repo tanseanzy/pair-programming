@@ -1,13 +1,13 @@
 import React from "react";
 import "./JokeDetails.scss";
 
-function JokeDetails(props) {
+function JokeDetails({currentJoke}) {
   // console.log(props);
-  const joke = props.currentJoke;
-  console.log(joke);
+  // const joke = props.currentJoke;
+  // console.log(currentJoke);
   return (
     <div className="jokeContainer">
-      <p>{props.value.joke}</p>
+      {currentJoke && <p>{currentJoke.value.joke}</p>}
     </div>
   );
 }
