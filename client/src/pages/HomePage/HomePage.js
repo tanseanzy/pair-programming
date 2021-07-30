@@ -13,19 +13,32 @@ class HomePage extends Component {
     axios
       .get(`http://api.icndb.com/jokes/random`)
       .then((response) => {
-        this.setState({currentJoke: response.data})
+        this.setState({ currentJoke: response.data });
         console.log(response.data);
       })
       //   console.log(response.data);
       //   return response.data;
       // })
-      
+
       .catch((error) => {
         console.log(error);
       });
-    }
+  }
 
-  //   componentDidUpdate() {}
+  componentDidUpdate(prevProps) {
+    if (prevProps.match.params.id !== this.props.match.params.id) {
+      axios
+        .get(`http://api.icndb.com/jokes/random`)
+        .then((response) => {
+          this.setState({ currentJoke: response.data });
+          console.log(response.data);
+        })
+
+        .catch((error) => {
+          console.log(error);
+        });
+    }
+  }
 
   render() {
     return (
