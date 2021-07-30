@@ -3,6 +3,7 @@ import "./HomePage.scss";
 import axios from "axios";
 
 import JokeDetails from "../../components/JokeDetails/JokeDetails";
+import JokeButton from "../../components/JokeButton/JokeButton";
 
 class HomePage extends Component {
   state = {
@@ -11,7 +12,9 @@ class HomePage extends Component {
 
   componentDidMount() {
     axios
-      .get(`http://api.icndb.com/jokes/random`)
+      .get(
+        `http://api.icndb.com/jokes/random?limitTo=%5Bnerdy%5D&escape=javascript`
+      )
       .then((response) => {
         this.setState({ currentJoke: response.data });
         console.log(response.data);
@@ -25,26 +28,34 @@ class HomePage extends Component {
       });
   }
 
+  updateJoke = () => {
+    axios
+      .get(
+        `http://api.icndb.com/jokes/random?limitTo=%5Bnerdy%5D&escape=javascript`
+      )
+      .then((response) => {
+        this.setState({ currentJoke: response.data });
+        console.log(response.data);
+      })
+
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
   componentDidUpdate(prevProps) {
     if (prevProps.match.params.id !== this.props.match.params.id) {
-      axios
-        .get(`http://api.icndb.com/jokes/random`)
-        .then((response) => {
-          this.setState({ currentJoke: response.data });
-          console.log(response.data);
-        })
-
-        .catch((error) => {
-          console.log(error);
-        });
+      this.updateJoke();
     }
   }
 
   render() {
     return (
-      <div>
-        <h1>Chuck Norris Joke Generator!</h1>
-        <JokeDetails currentJoke={this.state.currentJoke} />
+      <div className="container">
+        <div className="container__details">
+          <JokeDetails currentJoke={this.state.currentJoke} />
+        </div>
+        <JokeButton getNewJoke={this.updateJoke} />
       </div>
     );
   }

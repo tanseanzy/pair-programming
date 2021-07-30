@@ -1,0 +1,29 @@
+.container {
+  &__image {
+    max-width: 100%;
+    border-radius: 50%;
+    animation: dance 1s infinite alternate;
+  }
+
+  @keyframes dance {
+    0% {
+      transform: rotateX(30deg) rotateY(-30deg) rotateZ(-10deg) scale(1.1);
+    }
+    20% {
+      transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1.05);
+    }
+    40% {
+      transform: rotateX(-30deg) rotateY(30deg) rotateZ(10deg) scale(1.1);
+    }
+    60% {
+      transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg) scale(1.05);
+    }
+    80% {
+      transform: rotateX(30deg) rotateY(30deg) rotateZ(-10deg) scale(1.1);
+    }
+  }
+
+  &__text {
+    padding-top: 2rem;
+  }
+}
