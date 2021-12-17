@@ -10,11 +10,8 @@ export default class App extends Component {
       <div className="container">
         <h1>Chuck Norris Joke Generator!</h1>
         <BrowserRouter>
-          {/* <Header /> */}
           <Switch>
-            {/* <Route exact path="/upload" component={UploadPage} /> */}
             <Route exact path="/" component={HomePage} />
-            {/* <Route exact path="/:id" component={HomePage} /> */}
           </Switch>
         </BrowserRouter>
       </div>
